@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px (easy calculations) */
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: #d6ff3f;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  background-color: #d6ff3f;
+  color: #000000;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 144px;
+  padding: 0 1rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 11rem;
+  list-style-type: none;
+}
+
+.nav li a {
+  color: #000000;
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.hero {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10rem;
+  padding-right: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.left {
+  width: 56%;
+}
+
+.left h1 {
+  font-size: 17rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 17rem;
+}
+
+.right {
+  width: 44%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right .top {
+  display: flex;
+  justify-content: center;
+}
+
+.right .top .video {
+  background-color: black;
+  width: 32rem;
+  height: 8.5rem;
+  border-radius: 50px;
+  margin-top: 2rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background-image: url("https://images.unsplash.com/photo-1756187793625-4a29fef1f4f8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+.video .play {
+  position: absolute;
+  width: 7.5rem;
+  height: 7.5rem;
+  background-color: black;
+  border-radius: 50%;
+  top: 5.5px;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play i {
+  font-size: 4rem;
+  color: #d6ff3f;
+}
+
+.bottom p {
+  font-size: 2.4rem;
+  padding-top: 10.5rem;
+  line-height: 2.5rem;
+  font-weight: 500;
+  margin-left: -2rem;
+}
+
+.main_image {
+  width: 100%;
+  height: 63rem;
+  margin-top: 15rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://images.unsplash.com/photo-1589307004173-3c95204d00ee?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  border-top-left-radius: 200px;
+  border-top-right-radius: 200px;
+
+  position: relative;
+}
+
+.moving_circle {
+  width: 22rem;
+  height: 22rem;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: -6rem;
+  right: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moving_circle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 7px dashed #d6ff3f;
+  border-radius: 50%;
+  animation: rotateBorder 10s linear infinite;
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.moving_circle i {
+  font-size: 18rem;
+  color: #d6ff3f;
+  position: relative;
+}
+
+.second {
+  background-color: #171717;
+  width: 100%;
+  height: 100%;
+}
