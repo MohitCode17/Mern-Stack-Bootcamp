@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f5f6fa;
+  color: #222;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* Refresh Control */
+.refresh-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.refresh-control select {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* Crypto List */
+.crypto-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+/* Loading & Error */
+.loading {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Crypto Card  */
+.crypto-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.crypto-card:hover {
+  transform: scale(1.05);
+}
+
+.crypto-card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.crypto-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: bold;
+}
+
+.change.up {
+  color: green;
+}
+
+.change.down {
+  color: red;
+}
+
+@media (max-width: 500px) {
+  .header {
+    flex-direction: column;
+  }
+}
