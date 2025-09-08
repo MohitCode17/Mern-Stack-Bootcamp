@@ -660,3 +660,58 @@ export default function App() {
   );
 }
 ```
+
+---
+
+## useRef Hook
+
+useRef is a React hook that lets you create a mutable reference to a DOM element or a value that persists across renders without causing re-renders.
+
+```jsx
+const ref = useRef(initialValue);
+```
+
+- Returns an object → { current: initialValue }
+- Does NOT trigger re-renders when .current changes.
+- Perfect for storing values or accessing DOM nodes.
+
+### Why Do We Use useRef? 🤔
+
+1. Accessing DOM Elements ✅
+
+- Focus an input field automatically.
+- Measure element height, width, or position.
+- Control animations.
+
+2. Storing Mutable Values ✅
+
+- Store values between renders without re-rendering.
+- Example: Keeping track of previous values or timer IDs.
+
+3. Avoiding Re-renders ✅
+
+- Unlike useState, updating a ref doesn't cause re-rendering.
+- Useful when you want to store data but don't want to trigger UI updates.
+
+### How To Use It?
+
+```jsx
+// ACCESSING DOM DIRECTLY
+
+import { useRef } from "react";
+
+export default function App() {
+  const inputRef = useRef(null);
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} placeholder="Type here..." />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+}
+```
