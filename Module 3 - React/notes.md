@@ -715,3 +715,80 @@ export default function App() {
   );
 }
 ```
+
+## useContext Hook
+
+Before go deep into to understand a useContext Hook, first let's understand how this comes into play?
+
+### Prop Drilling
+
+Prop drilling happens when you pass data (props) from a parent component to deeply nested child components through multiple intermediate components — even if those components don’t actually use the data.
+
+**Example of Prop Drilling**
+
+```jsx
+// App.jsx
+import React, { useState } from "react";
+import ChildA from "./ChildA";
+
+const App = () => {
+  const [user, setUser] = useState("Mohit Gupta");
+
+  return (
+    <div>
+      <h1>Prop Drilling Example ❌</h1>
+      {/* Passing "user" down */}
+      <ChildA user={user} />
+    </div>
+  );
+};
+
+export default App;
+
+// ChildA.jsx
+import ChildB from "./ChildB";
+
+const ChildA = ({ user }) => {
+  return <ChildB user={user} />;
+};
+
+export default ChildA;
+
+
+// ChildB.jsx
+import ChildC from "./ChildC";
+
+const ChildB = ({ user }) => {
+  return <ChildC user={user} />;
+};
+
+export default ChildB;
+
+
+// ChildC.jsx
+const ChildC = ({ user }) => {
+  return <h2>Hello, {user} 👋</h2>;
+};
+
+export default ChildC;
+```
+
+**⚠️ Problem:**
+
+Even though only ChildC needs user, we still pass it through ChildA and ChildB unnecessarily.
+
+### How to Avoid Prop Drilling
+
+The best solution: React Context API using the useContext hook.
+
+With Context, we create a global state that any component can access directly without passing props manually.
+
+### What is useContext hook?
+
+The useContext hook allows you to consume global state from a Context directly.
+
+**Steps to Use:**
+
+- Create Context → const MyContext = createContext()
+- Wrap Components with Context Provider → `<MyContext.Provider value={data}>`
+- Consume Context Anywhere → const value = useContext(MyContext)
