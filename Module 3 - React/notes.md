@@ -842,3 +842,33 @@ const [state, dispatch] = useReducer(reducer, { count: 0 });
 // Then trigger actions:
 <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
 ```
+
+---
+
+## useMemo Hook
+
+useMemo is a React Hook used to memoize (cache) the result of a computation.
+It returns a cached value and recalculates it only when its dependencies change.
+
+```jsx
+const memoizedValue = useMemo(() => {
+  // some expensive calculation
+  return computedValue;
+}, [dependencies]);
+```
+
+### Why Do We Use useMemo?
+
+Normally, in React, every render triggers re-computation of all variables inside the component.
+This can cause performance issues if the calculation is heavy or if we have a large dataset.
+
+**Without useMemo ❌**
+
+- Every time the component re-renders, expensive calculations are re-executed unnecessarily.
+- Leads to slower performance.
+
+**With useMemo ✅**
+
+- Caches the result of expensive calculations.
+- Recomputes only when dependencies change.
+- Optimizes performance for large computations or filtered data.
