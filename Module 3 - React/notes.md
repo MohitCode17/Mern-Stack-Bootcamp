@@ -792,3 +792,53 @@ The useContext hook allows you to consume global state from a Context directly.
 - Create Context → const MyContext = createContext()
 - Wrap Components with Context Provider → `<MyContext.Provider value={data}>`
 - Consume Context Anywhere → const value = useContext(MyContext)
+
+---
+
+## useReducer Hook
+
+useReducer is a React Hook used to manage complex state logic in a predictable and organized way.
+
+It works on the Reducer Pattern → you have:
+
+- State → current state of the component.
+- Dispatch → a function to trigger actions.
+- Reducer Function → defines how state should update based on the action.
+
+```jsx
+const [state, dispatch] = useReducer(reducer, initialState);
+```
+
+### Why Use useReducer When useState Exists?
+
+| **Scenario**                              | **useState** ✅         | **useReducer** ✅ |
+| ----------------------------------------- | ----------------------- | ----------------- |
+| Simple state (one or two values)          | ✔ Best                  | ❌ Overkill       |
+| Multiple related states                   | ❌ Gets messy           | ✔ Cleaner         |
+| Complex state transitions                 | ❌ Hard to manage       | ✔ Perfect         |
+| When next state depends on previous state | ✔ Possible, but verbose | ✔ Natural         |
+| Scalable apps                             | ❌ Hard                 | ✔ Easier          |
+
+**Example**
+
+```jsx
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return { count: state.count + 1 };
+    case "DECREMENT":
+      return { count: state.count - 1 };
+    case "RESET":
+      return { count: 0 };
+    default:
+      return state;
+  }
+};
+
+const [state, dispatch] = useReducer(reducer, { count: 0 });
+```
+
+```jsx
+// Then trigger actions:
+<button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
+```
