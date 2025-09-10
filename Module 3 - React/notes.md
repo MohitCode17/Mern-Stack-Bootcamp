@@ -961,4 +961,61 @@ const Child = React.memo(({ onClick }) => {
 | **Use case**         | Expensive calculations, filtering, sorting, derived data    | Passing **stable functions** to children to prevent unnecessary re-renders |
 | **Example**          | `const filtered = useMemo(() => filterData(data), [data]);` | `const handleClick = useCallback(() => doSomething(), []);`                |
 
+---
 
+## Custom Hook
+
+A custom hook is just a normal JavaScript function whose name starts with use and internally uses React hooks like useState, useEffect, useCallback, etc.
+
+It helps you extract reusable logic into a separate function.
+
+**Example Problem Without Custom Hook**
+
+Imagine we have two components → UsersList and PostsList.
+Both fetch data from an API using useEffect and useState.
+
+You’d have to duplicate the fetch logic in both components ❌ — not DRY.
+
+**With Custom Hook ✅**
+
+We create a single hook → useFetch(url) →
+and use it anywhere we want to fetch data.
+
+**Syntax of a Custom Hook**
+
+```jsx
+import { useState, useEffect } from "react";
+
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Something went wrong!");
+        const result = await response.json();
+        if (isMounted) setData(result);
+      } catch (err) {
+        if (isMounted) setError(err.message);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false; // cleanup to avoid memory leaks
+    };
+  }, [url]);
+
+  return { data, loading, error };
+};
+
+export default useFetch;
+```
