@@ -1019,3 +1019,96 @@ const useFetch = (url) => {
 
 export default useFetch;
 ```
+
+---
+
+## Forms in React
+
+Forms are one of the most important parts of any real-world React application — from login/signup pages to job applications, e-commerce checkout, and admin dashboards.
+
+### Types of Forms in React
+
+React forms can be implemented in two main ways:
+
+**A. Controlled Components ✅ (Recommended)**
+
+- React controls the input values via state.
+- Every change updates React state, and the UI re-renders.
+
+```jsx
+import { useState } from "react";
+
+const ControlledForm = () => {
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Name:", name);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Enter your name"
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default ControlledForm;
+
+// When to use:
+// ✅ Best for forms that need real-time validation or dynamic behavior.
+// ✅ Recommended for most React apps.
+```
+
+**B. Uncontrolled Components**
+
+- DOM itself controls the input.
+- You use ref to access values directly without syncing them with React state.
+
+```jsx
+import { useRef } from "react";
+
+const UncontrolledForm = () => {
+  const inputRef = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Name:", inputRef.current.value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input ref={inputRef} type="text" placeholder="Enter your name" />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default UncontrolledForm;
+```
+
+### Real-Time Validation
+
+Forms should provide instant feedback when users make mistakes:
+
+```jsx
+const [email, setEmail] = useState("");
+const [error, setError] = useState("");
+
+const handleChange = (e) => {
+  const value = e.target.value;
+  setEmail(value);
+
+  if (!value.includes("@")) {
+    setError("Invalid email format");
+  } else {
+    setError("");
+  }
+};
+```
